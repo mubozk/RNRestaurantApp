@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { StyleSheet, View, Text } from "react-native";
 import SearchBar from "../components/SearchBar";
 import useResults from "../hooks/useResults";

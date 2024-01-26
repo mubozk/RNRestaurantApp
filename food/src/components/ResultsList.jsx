@@ -1,7 +1,7 @@
 import React from "react";
 import { StyleSheet, View, Text } from "react-native";
 import { FlatList } from "react-native-gesture-handler";
-
+import ResultsDetail from "./ResultsDetail";
 export default ResultsList = ({ title, results }) => {
   return (
     <View style={styles.backgroundStyle}>
@@ -12,7 +12,7 @@ export default ResultsList = ({ title, results }) => {
         data={results}
         keyExtractor={(result) => result.id}
         renderItem={({ item }) => {
-          return <Text>{item.name}</Text>;
+          return <ResultsDetail result={item}/>;
         }}
       />
     </View>
