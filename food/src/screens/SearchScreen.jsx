@@ -1,12 +1,12 @@
-import React, { useState } from "react";
-import { StyleSheet, View, Text } from "react-native";
+import { StyleSheet } from "react-native";
 import SearchBar from "../components/SearchBar";
 import useResults from "../hooks/useResults";
 import ResultsList from "../components/ResultsList";
+import React, { useState } from "react";
+import { View, Text, ScrollView } from "react-native";
 export default SearchScreen = () => {
   const [term, setTerm] = useState("");
   const { results, searchAPI, errorMessage } = useResults();
-  //   console.log(searchAPI);
 
   const filterResultsByPrice = (price) => {
     return results.filter((result) => {
@@ -15,24 +15,28 @@ export default SearchScreen = () => {
   };
 
   return (
-    <View>
+    <>
       <SearchBar
         term={term}
         onTermChange={setTerm}
         onTermSubmit={() => searchAPI(term)}
       />
       {errorMessage ? <Text>{errorMessage}</Text> : null}
-      <Text> We have found {results.length} results</Text>
-      <ResultsList
-        title={"Cost Effective"}
-        results={filterResultsByPrice("$")}
-      />
-      <ResultsList title={"Bit Pricier"} results={filterResultsByPrice("$$")} />
-      <ResultsList
-        title={"Big Spender"}
-        results={filterResultsByPrice("$$$")}
-      />
-    </View>
+      <ScrollView>
+        <ResultsList
+          title={"Cost Effective"}
+          results={filterResultsByPrice("$")}
+        />
+        <ResultsList
+          title={"Bit Pricier"}
+          results={filterResultsByPrice("$$")}
+        />
+        <ResultsList
+          title={"Big Spender"}
+          results={filterResultsByPrice("$$$")}
+        />
+      </ScrollView>
+    </>
   );
 };
 
